@@ -1,3 +1,8 @@
+import cv2
+import matplotlib.pyplot as plt
+
+img = cv2.imread('sudoku.jpeg')
+rows,cols,ch = img.shape
 plt.imshow(img)
 x = plt.ginput(4)
 print(x)
