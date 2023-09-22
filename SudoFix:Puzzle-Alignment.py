@@ -1,17 +1,22 @@
+#importing libraries
 import cv2
 import matplotlib.pyplot as plt
 
+#Reading tilted image and storing it's shape
 img = cv2.imread('sudoku.jpeg')
 rows,cols,ch = img.shape
 plt.imshow(img)
+
+#Selecting 4 corners of the image to align
 x = plt.ginput(4)
 print(x)
 plt.show()
    
-
+#Using geometric transformation
 pts1 = np.float32([x[0],x[1],x[2],x[3]])
 pts2 = np.float32([[0,0],[cols,0],[0,rows],[cols,rows]])
 
+#Computing and applying perspective transformation
 M = cv2.getPerspectiveTransform(pts1,pts2)
 dst = cv2.warpPerspective(img,M,(cols,rows))
 
